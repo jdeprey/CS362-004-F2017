@@ -3,16 +3,75 @@
 #include<stdlib.h>
 #include<time.h>
 
+// Generate random character from 9 possibilities ([, (, {, ' ', a, x, }, ), ])
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+    int randomNumber = rand() % 9;
+    char randomChar;
+    switch (randomNumber) {
+      case 0:
+        randomChar = '[';
+        break;
+      case 1:
+        randomChar = '(';
+        break;
+      case 2:
+        randomChar = '{';
+        break;
+      case 3:
+        randomChar = ' ';
+        break;
+      case 4:
+        randomChar = 'a';
+        break;
+      case 5:
+        randomChar = 'x';
+        break;
+      case 6:
+        randomChar = '}';
+        break;
+      case 7:
+        randomChar = ')';
+        break;
+      case 8:
+        randomChar = ']';
+        break;
+    }
+    return randomChar;
 }
+
 
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+    int i = 0;
+    static char randomStr[6];
+    char randomChar;
+
+    for (i = 0; i < 6; i++) {
+      randomChar = rand() % 6;
+
+      switch(randomChar) {
+        case 0:
+          randomStr[i] = 'r';
+          break;
+        case 1:
+          randomStr[i] = 'e';
+          break;
+        case 2:
+          randomStr[i] = 's';
+          break;
+        case 3:
+          randomStr[i] = 'e';
+          break;
+        case 4:
+          randomStr[i] = 't';
+          break;
+        case 5:
+          randomStr[i] = '\0';
+          break;
+      }
+    }
+    return randomStr;
 }
 
 void testme()
