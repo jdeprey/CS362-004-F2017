@@ -1,0 +1,15 @@
+Adventurer Card Bug:
+'make cardtest1' results in 3 error messages, indicating that the Adventurer card is failing to cause Player to draw two treasures, the card is failing to be fully played (discarded after play), and failing to only play one card.
+
+Looking at the code the root of the problem appears to be a block of code that was unnecessarily put in an else conditional if the deck was empty.  The error occurs because after the discard pile is shuffled and added to the deck the next block of code should run.  After being put in an 'else' block the code fails to run, resulting in various errors.
+
+Smithy Card Bug:
+Results in segmentation fault when running unit tests for Smithy Card.  When attempting to run via 'make cardtest2', the test that plays the Smithy card.
+
+Without looking at the code the root cause of this bug is difficult to pinpoint. It stems from an incorrect ordering of arguments in the discardCard method at the end of the Smithy card method. Instead of using arguments as handPos, current player, state, and 0, the buggy code used state, current player, handPos, and 0.  The switching of handPos and current player results in a memory leak and segmentation fault.
+
+Village Card Bug:
+'make cardtest4' results in 1 error message, indicating that the Village card fails to give the player two additional actions. There is an incorrect number of actions (not equal to 2) after using the village card.
+
+This was a simple bug that was easy to find because the card test only failed with one error.  Looking at the code we find the number of actions given to the player is 3 instead of 2.  A simple fix would be to change this value to 2.
+
